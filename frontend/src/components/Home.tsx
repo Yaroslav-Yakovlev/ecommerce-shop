@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useGetAllProductsQuery} from "../features/productsApi";
 import {Products} from "../features/productsSlice";
 
-const Home = () => {
+const Home: FC = () => {
     const { data, error, isLoading} = useGetAllProductsQuery('');
 
 
