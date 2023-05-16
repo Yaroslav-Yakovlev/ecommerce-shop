@@ -1,10 +1,11 @@
+
 const products = [
     {
-        id: 1,
-        name: 'iPhone 12 pro',
-        description: '6.1-inch display',
-        price: 999,
-        image: 'https://res.cloudinary.com/dw7scy18o/image/upload/v1673380668/onlineShop/iphone12pro_uymfbx.jpg',
+        "id": 1,
+        "name": 'iPhone 12 pro',
+        "description": '6.1-inch display',
+        "price": 999,
+        "image": 'https://res.cloudinary.com/dw7scy18o/image/upload/v1673380668/onlineShop/iphone12pro_uymfbx.jpg',
     },
     {
         id: 2,
