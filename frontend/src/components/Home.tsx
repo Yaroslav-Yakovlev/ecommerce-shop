@@ -1,10 +1,16 @@
 import React, {FC} from 'react';
 import {useGetAllProductsQuery} from "../features/productsApi";
 import {Products} from "../features/productsSlice";
+import {useAppDispatch} from "../hooks";
+import {addToCart} from "../features/cartSlice";
 
 const Home: FC = () => {
-    const { data, error, isLoading} = useGetAllProductsQuery('');
+    const { data, error, isLoading} = useGetAllProductsQuery();
+    const dispatch = useAppDispatch();
 
+    const handleAddCart = (product: Products): void => {
+        dispatch(addToCart(product))
+    };
 
     return (
         <div className='home-container'>
@@ -32,7 +38,7 @@ const Home: FC = () => {
                                 <span>{product.description}</span>
                                 <span className='price'>${product.price}</span>
                             </div>
-                            <button>Add To Cart</button>
+                            <button onClick={() => handleAddCart(product)}>Add To Cart</button>
                         </div>
                         ))}
                     </div>
