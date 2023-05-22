@@ -3,13 +3,17 @@ import {useGetAllProductsQuery} from "../features/productsApi";
 import {Products} from "../features/productsSlice";
 import {useAppDispatch} from "../hooks";
 import {addToCart} from "../features/cartSlice";
+import {useNavigate} from "react-router-dom";
 
 const Home: FC = () => {
     const { data, error, isLoading} = useGetAllProductsQuery();
+
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const handleAddCart = (product: Products): void => {
-        dispatch(addToCart(product))
+        dispatch(addToCart(product));
+        navigate('/cart');
     };
 
     return (
