@@ -1,9 +1,29 @@
 import React, {FC} from 'react';
-import {useAppSelector} from "../hooks";
+import {useAppSelector, useAppDispatch} from "../hooks";
 import {Link} from "react-router-dom";
+import {Products} from "../features/productsSlice";
+import {addToCart, clearCart, decreaseCartItem, removeFromCart} from "../features/cartSlice";
 
 const Cart: FC = () => {
     const cart = useAppSelector((state) => state.cart);
+    const dispatch = useAppDispatch();
+
+    const handleRemoveFromCart = (cartItem: Products): void => {
+        dispatch(removeFromCart(cartItem));
+    };
+
+    const handleDecreaseCartItem = (cartItem: Products): void => {
+        dispatch(decreaseCartItem(cartItem));
+    };
+
+    const handleIncreaseCartItem = (cartItem: Products): void => {
+        dispatch(addToCart(cartItem));
+    };
+
+    const handleClearCart = (): void => {
+        dispatch(clearCart());
+    };
+
 
     return (
         <div className='cart-container'>
@@ -42,14 +62,14 @@ const Cart: FC = () => {
                                     <div>
                                         <h3>{cartItem.name}</h3>
                                         <p>{cartItem.description}</p>
-                                        <button>Remove</button>
+                                        <button onClick={() => handleRemoveFromCart(cartItem)}>Remove</button>
                                     </div>
                                 </div>
                                 <div className="cart-product-price">${cartItem.price}</div>
                                 <div className="cart-product-quantity">
-                                    <button>-</button>
+                                    <button onClick={() => handleDecreaseCartItem(cartItem)}>-</button>
                                     <div className="count">{cartItem.cartQuantity}</div>
-                                    <button>+</button>
+                                    <button onClick={() => handleIncreaseCartItem(cartItem)}>+</button>
                                 </div>
                                 <div className="cart-product-total-price">
                                     ${cartItem.price * cartItem.cartQuantity}
@@ -58,7 +78,12 @@ const Cart: FC = () => {
                         ))}
                     </div>
                     <div className="cart-summary">
-                        <button className="clear-cart">Clear Cart</button>
+                        <button
+                            onClick={() => handleClearCart()}
+                            className="clear-cart"
+                        >
+                            Clear Cart
+                        </button>
                         <div className='cart-checkout'>
                             <div className="subtotal">
                                 <span>Subtotal</span>
