@@ -12,16 +12,16 @@ export interface Products {
 
 export interface InitialState {
     items: Products[] | undefined;
-    status: "idle" | "pending" | "success" | "rejected";
+    status: 'idle' | 'pending' | 'success' | 'rejected';
 }
 
 const initialState: InitialState = {
     items: undefined,
-    status: "idle",
+    status: 'idle',
 };
 
 export const productsFetch = createAsyncThunk<Products[] | undefined>(
-    "products/productsFetch",
+    'products/productsFetch',
     async () => {
         const response: AxiosResponse<Products[]> = await axios.get(
             "http://localhost:5000/products"
@@ -32,22 +32,22 @@ export const productsFetch = createAsyncThunk<Products[] | undefined>(
 );
 
 const productsSlice = createSlice({
-    name: "products",
+    name: 'products',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(productsFetch.pending, (state: InitialState) => {
-            state.status = "pending";
+            state.status = 'pending';
         });
         builder.addCase(
             productsFetch.fulfilled,
             (state: InitialState, action: PayloadAction<Products[] | undefined>) => {
-                state.status = "success";
+                state.status = 'success';
                 state.items = action.payload;
             }
         );
         builder.addCase(productsFetch.rejected, (state: InitialState) => {
-            state.status = "rejected";
+            state.status = 'rejected';
         });
     },
 });

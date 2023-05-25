@@ -1,12 +1,16 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useAppSelector, useAppDispatch} from "../hooks";
 import {Link} from "react-router-dom";
 import {Products} from "../features/productsSlice";
-import {addToCart, clearCart, decreaseCartItem, removeFromCart} from "../features/cartSlice";
+import {addToCart, clearCart, decreaseCartItem, getTotals, removeFromCart} from "../features/cartSlice";
 
 const Cart: FC = () => {
     const cart = useAppSelector((state) => state.cart);
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getTotals());
+    }, [cart, dispatch]);
 
     const handleRemoveFromCart = (cartItem: Products): void => {
         dispatch(removeFromCart(cartItem));
