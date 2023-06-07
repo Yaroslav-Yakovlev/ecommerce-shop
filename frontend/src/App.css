@@ -1,31 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,700;1,400&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,700;1,400&display=swap');*/
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'nunito', sans-serif;
+/** {*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    box-sizing: border-box;*/
+/*    font-family: 'nunito', sans-serif;*/
 
-}
+/*}*/
 /* Nav bar*/
 
-.nav-bar {
-    height: 70px;
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 4rem;
-}
+/*.nav-bar {*/
+/*    height: 70px;*/
+/*    background-color: black;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 0 4rem;*/
+/*}*/
 
-.nav-bar a {
-    text-decoration: none;
-    color: white;
-}
+/*.nav-bar a {*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*}*/
 
-.nav-bar h2 {
-    font-size: 40px;
-}
+/*.nav-bar h2 {*/
+/*    font-size: 40px;*/
+/*}*/
 
 .nav-bag {
     display: flex;

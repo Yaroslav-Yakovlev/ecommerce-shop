@@ -7,10 +7,12 @@ import Cart from "./components/Cart";
 import NotFound from "./components/NotFound";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import GlobalStyled from "./components/styles/Global";
 
 function App() {
   return (
-    <div className="App">
+      <>
+          <GlobalStyled/>
         <BrowserRouter>
             <ToastContainer/>
           <NavBar/>
@@ -21,7 +23,7 @@ function App() {
               <Route path='*' element={<NotFound/>}/>
           </Routes>
         </BrowserRouter>
-    </div>
+      </>
   );
 }
 

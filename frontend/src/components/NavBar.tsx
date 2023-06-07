@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 import {useAppSelector} from "../hooks";
+import {NavStyled} from "./styles/Nav.styled";
 
 const NavBar: FC = () => {
     const {cartTotalQuantity} = useAppSelector((state) => state.cart);
 
     return (
-        <nav className='nav-bar'>
+        <NavStyled>
             <Link to='/'>
                 <h2>OnlineShop</h2>
             </Link>
@@ -26,7 +27,7 @@ const NavBar: FC = () => {
                 </span>
                 </div>
             </Link>
-        </nav>
+        </NavStyled>
     );
 };
 
