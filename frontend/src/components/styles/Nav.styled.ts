@@ -31,9 +31,7 @@ export const NavStyled = styled.nav`
     border-radius: 50%;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 5px;
     color: black;
     background-color: yellow;
   }
-  
 `;

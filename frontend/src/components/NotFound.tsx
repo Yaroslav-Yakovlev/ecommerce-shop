@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
+import {NotFoundStyled} from "./styles/NotFound.styled";
 
 const NotFound: FC = () => {
     return (
-        <div className='not-found'>
+        <NotFoundStyled>
             <h2>404</h2>
             <p>Page not found</p>
-        </div>
+        </NotFoundStyled>
     );
 };
 

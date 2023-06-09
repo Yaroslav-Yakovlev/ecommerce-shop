@@ -1,54 +1,37 @@
 import React, {FC} from 'react';
 import {useGetAllProductsQuery} from "../features/productsApi";
 import {Products} from "../features/productsSlice";
-import {useAppDispatch} from "../hooks";
-import {addToCart} from "../features/cartSlice";
-import {useNavigate} from "react-router-dom";
+import Item from "./Item";
+import {HomeContainerStyled} from "./styles/HomeContainer.styled";
 
 const Home: FC = () => {
     const { data, error, isLoading} = useGetAllProductsQuery();
 
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-
-    const handleAddCart = (product: Products): void => {
-        dispatch(addToCart(product));
-        navigate('/cart');
-    };
-
     return (
-        <div className='home-container'>
-            {isLoading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p>An error occurred..</p>
-            ) : (
+        <HomeContainerStyled>
+            {isLoading && <p>Loading...</p>}
+
+            {error && <p>An error occurred..</p>}
+
+            {!isLoading && !error && (
                 <>
                     <h2>New Arrivals</h2>
-
-                    <div className="products">
-                        {
-                           Array.isArray(data) && data?.map((product: Products) => (
-                               <div
+                    <div>
+                        { Array.isArray(data) && data?.map((product: Products) => (
+                            <Item
+                                product={product}
                                 key={product.id}
-                                className={'product'}
-                               >
-                            <h3>{product.name}</h3>
-                            <img
-                                src={product.image}
-                                alt={product.name}
+                                image={product.image}
+                                name={product.name}
+                                description={product.description}
+                                price={product.price}
                             />
-                            <div className='details'>
-                                <span>{product.description}</span>
-                                <span className='price'>${product.price}</span>
-                            </div>
-                            <button onClick={() => handleAddCart(product)}>Add To Cart</button>
-                        </div>
                         ))}
                     </div>
                 </>
             )}
-        </div>
+
+        </HomeContainerStyled>
     );
 };
 
