@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -9,7 +9,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import GlobalStyled from "./components/styles/Global";
 
-function App() {
+const App: FC = () => {
   return (
       <>
           <GlobalStyled/>
