@@ -3,6 +3,10 @@ import {useAppSelector, useAppDispatch} from "../hooks";
 import {Link} from "react-router-dom";
 import {Products} from "../features/productsSlice";
 import {addToCart, clearCart, decreaseCartItem, getTotals, removeFromCart} from "../features/cartSlice";
+import {EmptyCartStyled} from "./styles/EmptyCart.styled";
+import {TitlesStyled} from "./styles/Titles.styled";
+import {CartContainerStyled} from "./styles/CartContainer.styled";
+import {CartItemsStyled, CartProductStyled} from "./styles/CartItems.styled";
 
 const Cart: FC = () => {
     const cart = useAppSelector((state) => state.cart);
@@ -28,14 +32,13 @@ const Cart: FC = () => {
         dispatch(clearCart());
     };
 
-
     return (
-        <div className='cart-container'>
+        <CartContainerStyled>
             <h2>Shopping Cart</h2>
             {cart.cartItems.length === 0 ? (
-                <div className='cart-empty'>
+                <EmptyCartStyled>
                     <p>Your cart is currently empty</p>
-                    <div className='start-shopping'>
+                    <div>
                         <Link to='/'>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  width="20"
@@ -49,26 +52,26 @@ const Cart: FC = () => {
                             <span>Start Shopping</span>
                         </Link>
                     </div>
-                </div>
+                </EmptyCartStyled>
             ) : (
                 <div>
-                    <div className='titles'>
-                        <h3 className='product-title'>Product</h3>
-                        <h3 className='price'>Price</h3>
-                        <h3 className='quantity'>Quantity</h3>
-                        <h3 className='total'>Total</h3>
-                    </div>
-                    <div className="cart-items">
+                    <TitlesStyled>
+                        <h3>Product</h3>
+                        <h3>Price</h3>
+                        <h3>Quantity</h3>
+                        <h3>Total</h3>
+                    </TitlesStyled>
+                    <div>
                         {cart.cartItems?.map(cartItem => (
-                            <div className='cart-item' key={cartItem.id}>
-                                <div className="cart-product">
+                            <CartItemsStyled>
+                                <CartProductStyled>
                                     <img src={cartItem.image} alt={cartItem.name}/>
                                     <div>
                                         <h3>{cartItem.name}</h3>
                                         <p>{cartItem.description}</p>
                                         <button onClick={() => handleRemoveFromCart(cartItem)}>Remove</button>
                                     </div>
-                                </div>
+                                </CartProductStyled>
                                 <div className="cart-product-price">${cartItem.price}</div>
                                 <div className="cart-product-quantity">
                                     <button onClick={() => handleDecreaseCartItem(cartItem)}>-</button>
@@ -78,7 +81,7 @@ const Cart: FC = () => {
                                 <div className="cart-product-total-price">
                                     ${cartItem.price * cartItem.cartQuantity}
                                 </div>
-                            </div>
+                            </CartItemsStyled>
                         ))}
                     </div>
                     <div className="cart-summary">
@@ -113,7 +116,7 @@ const Cart: FC = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </CartContainerStyled>
     );
 };
 
