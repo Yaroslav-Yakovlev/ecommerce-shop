@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-export const EmptyCartStyled = styled.div`
+interface StartAndContinueShoppingStyledProps {
+    flexDirection: string;
+}
+
+
+export const StartAndContinueShoppingStyled = styled.div<StartAndContinueShoppingStyledProps>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ flexDirection }) => flexDirection};
   align-items: center;
   font-size: 20px;
-  margin-top: 2rem;
+  margin-top: 1rem;
   color: rgb(84,84,84);
   
-  > div {
+   div {
     margin-top: 1rem;
   }
   
@@ -17,6 +22,7 @@ export const EmptyCartStyled = styled.div`
     text-decoration: none;
     align-items: center;
     color: gray;
+    font-weight: 700;
   }
   
   span {
