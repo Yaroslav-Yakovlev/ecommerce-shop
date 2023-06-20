@@ -5,10 +5,14 @@ export const ButtonStyled = styled.button`
   height: 40px;
   border-radius: 5px;
   border: none;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-weight: 400;
   outline: none;
   cursor: pointer;
   background: #4b70e2;
   color: white;
+  
+  &:hover {
+    font-weight: 700;
+  }
 `;

@@ -3,10 +3,14 @@ import {useAppSelector, useAppDispatch} from "../hooks";
 import {Link} from "react-router-dom";
 import {Products} from "../features/productsSlice";
 import {addToCart, clearCart, decreaseCartItem, getTotals, removeFromCart} from "../features/cartSlice";
-import {EmptyCartStyled} from "./styles/EmptyCart.styled";
+import {StartAndContinueShoppingStyled} from "./styles/StartAndContinueShopping.styled";
 import {TitlesStyled} from "./styles/Titles.styled";
 import {CartContainerStyled} from "./styles/CartContainer.styled";
-import {CartItemsStyled, CartProductStyled} from "./styles/CartItems.styled";
+import {CartItemsContainerStyled, CartItemStyled, QuantityStyled, TotalPriceStyled} from "./styles/CartItems.styled";
+import {CartSummaryStyled, ClearCartButtonStyled} from "./styles/CartSummary.styled";
+import {CheckOutStyled} from "./styles/CheckOut.styled";
+import {ButtonStyled} from "./styles/Button.styled";
+
 
 const Cart: FC = () => {
     const cart = useAppSelector((state) => state.cart);
@@ -36,7 +40,7 @@ const Cart: FC = () => {
         <CartContainerStyled>
             <h2>Shopping Cart</h2>
             {cart.cartItems.length === 0 ? (
-                <EmptyCartStyled>
+                <StartAndContinueShoppingStyled flexDirection='column'>
                     <p>Your cart is currently empty</p>
                     <div>
                         <Link to='/'>
@@ -52,7 +56,7 @@ const Cart: FC = () => {
                             <span>Start Shopping</span>
                         </Link>
                     </div>
-                </EmptyCartStyled>
+                </StartAndContinueShoppingStyled>
             ) : (
                 <div>
                     <TitlesStyled>
@@ -63,42 +67,39 @@ const Cart: FC = () => {
                     </TitlesStyled>
                     <div>
                         {cart.cartItems?.map(cartItem => (
-                            <CartItemsStyled>
-                                <CartProductStyled>
+                            <CartItemsContainerStyled key={cartItem.id}>
+                                <CartItemStyled>
                                     <img src={cartItem.image} alt={cartItem.name}/>
                                     <div>
                                         <h3>{cartItem.name}</h3>
                                         <p>{cartItem.description}</p>
                                         <button onClick={() => handleRemoveFromCart(cartItem)}>Remove</button>
                                     </div>
-                                </CartProductStyled>
-                                <div className="cart-product-price">${cartItem.price}</div>
-                                <div className="cart-product-quantity">
+                                </CartItemStyled>
+                                <div>${cartItem.price}</div>
+                                <QuantityStyled>
                                     <button onClick={() => handleDecreaseCartItem(cartItem)}>-</button>
-                                    <div className="count">{cartItem.cartQuantity}</div>
+                                    <div>{cartItem.cartQuantity}</div>
                                     <button onClick={() => handleIncreaseCartItem(cartItem)}>+</button>
-                                </div>
-                                <div className="cart-product-total-price">
+                                </QuantityStyled>
+                                <TotalPriceStyled>
                                     ${cartItem.price * cartItem.cartQuantity}
-                                </div>
-                            </CartItemsStyled>
+                                </TotalPriceStyled>
+                            </CartItemsContainerStyled>
                         ))}
                     </div>
-                    <div className="cart-summary">
-                        <button
-                            onClick={() => handleClearCart()}
-                            className="clear-cart"
-                        >
+                    <CartSummaryStyled>
+                        <ClearCartButtonStyled onClick={() => handleClearCart()}>
                             Clear Cart
-                        </button>
-                        <div className='cart-checkout'>
-                            <div className="subtotal">
+                        </ClearCartButtonStyled>
+                        <CheckOutStyled>
+                            <div>
                                 <span>Subtotal</span>
-                                <span className='amount'>${cart.cartTotalAmount}</span>
+                                <span>${cart.cartTotalAmount}</span>
                             </div>
                             <p>Taxes and shipping calculated at checkout</p>
-                            <button>Check out</button>
-                            <div className='continue-shopping'>
+                            <ButtonStyled>Check out</ButtonStyled>
+                            <StartAndContinueShoppingStyled flexDirection='row'>
                                 <Link to='/'>
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          width="20"
@@ -111,9 +112,9 @@ const Cart: FC = () => {
                                     </svg>
                                     <span>Continue Shopping</span>
                                 </Link>
-                            </div>
-                        </div>
-                    </div>
+                            </StartAndContinueShoppingStyled>
+                        </CheckOutStyled>
+                    </CartSummaryStyled>
                 </div>
             )}
         </CartContainerStyled>

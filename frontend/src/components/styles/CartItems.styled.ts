@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartItemsStyled = styled.div`
+export const CartItemsContainerStyled = styled.div`
   display: grid;
   align-items: center;
   grid-template-columns: 3fr 1fr 1fr 1fr;
@@ -9,10 +9,9 @@ export const CartItemsStyled = styled.div`
   padding: 1rem 0;
   color: black;
   font-weight: 400;
-  cursor: pointer;
 `;
 
-export const CartProductStyled = styled.div`
+export const CartItemStyled = styled.div`
   display: flex;
   font-weight: 400;
   
@@ -39,4 +38,33 @@ export const CartProductStyled = styled.div`
     font-weight: 600;
     cursor: pointer; 
   }
+`;
+
+export const QuantityStyled = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 130px;
+  max-width: 100%;
+  border: 0.5px solid rgb(177,177,177);
+  border-radius: 5px;
+  
+  button {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.7rem;
+    cursor: pointer;
+    width: 50px;
+  }
+  
+  div {
+    padding: 0.7rem 0;
+  }
+`;
+
+export const TotalPriceStyled = styled.div`
+  justify-self: right;
+  padding-right: 0.5rem;
+  font-weight: 700;
 `;
