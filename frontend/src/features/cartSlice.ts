@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Products} from "./productsSlice";
 import {toast} from "react-toastify";
 
-export interface cartInitialState {
+export interface CartInitialState {
     cartItems: Products[],
     cartTotal: {
         total: number,
