@@ -12,7 +12,7 @@ export interface CartInitialState {
     cartTotalAmount: number,
 }
 
-const initialState: cartInitialState = {
+const initialState: CartInitialState = {
     cartItems: localStorage.getItem('cartItems')
         ? JSON.parse(localStorage.getItem('cartItems') || '')
         : [],
